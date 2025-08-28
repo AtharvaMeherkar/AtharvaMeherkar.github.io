@@ -168,4 +168,5 @@ AtharvaMeherkar.github.io/
 <div align="center">
   <p>⭐ Star this repository if you found it helpful!</p>
   <p>Made with ❤️ by Atharva Meherkar</p>
+  <p><small>Last updated: $(Get-Date -Format "yyyy-MM-dd HH:mm")</small></p>
 </div>
