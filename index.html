@@ -1,849 +1,1556 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Atharva Meherkar | Cybersecurity Developer & Full-Stack Engineer
-    </title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- Header -->
-    <header>
-      <nav class="nav">
-        <a href="#" class="logo">Atharva.dev</a>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Atharva Meherkar — Security Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#fcfbf9; /* Editorial Eggshell White */
+  --surface:#ffffff;
+  --surface-hover:#faf8f5;
+  --border:rgba(0,0,0,0.06);
+  --border-strong:rgba(0,0,0,0.12);
+  --text:#171717; /* Charcoal */
+  --text-muted:#4a4a4a;
+  --text-light:#7a7a7a;
+  --accent:#5b21b6;
+  --accent-light:#7c3aed;
+  --accent-glow:rgba(124,58,237,0.04);
+  --success:#15803d;
+  --success-glow:rgba(21,128,61,0.06);
+}
+::selection{background:var(--accent-light);color:#ffffff}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <div class="hero-left">
-            <div class="hero-badge">
-              <i class="fas fa-shield-alt"></i>
-              <span>Available for Cybersecurity Opportunities</span>
-            </div>
+.mono{font-family:'JetBrains Mono',monospace}
+.serif{font-family:'Lora',serif}
 
-            <h2>Atharva Meherkar</h2>
-            <p class="hero-title">
-              Cybersecurity Developer • Full-Stack Engineer • Ethical Hacker •
-              Pune, India
-            </p>
-            <p class="hero-subtitle">
-              Passionate about building secure, scalable applications and
-              protecting digital assets through innovative cybersecurity
-              solutions.
-            </p>
+/* Main Container */
+.wrap{max-width:1440px;margin:0 auto;padding:0 clamp(1.5rem,6vw,6rem);position:relative;z-index:1}
 
-            <div class="hero-buttons">
-              <a href="#projects" class="btn">
-                <i class="fas fa-rocket"></i>
-                View Projects
-              </a>
-              <a href="#contact" class="btn secondary">
-                <i class="fas fa-envelope"></i>
-                Get In Touch
-              </a>
-            </div>
+/* Cursor Spotlight Glow */
+#spotlight {
+  position:fixed;
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle, rgba(124,58,237,0.03) 0%, rgba(21,128,61,0.01) 50%, transparent 100%);
+  border-radius:50%;
+  pointer-events:none;
+  transform:translate(-50%, -50%);
+  z-index:0;
+  left:-1000px;
+  top:-1000px;
+}
+
+/* Grid Canvas Lines */
+.grid-lines {
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  max-width:1440px;
+  margin:0 auto;
+  padding:0 clamp(1.5rem,6vw,6rem);
+}
+.grid-line {
+  border-right: 1px solid rgba(0,0,0,0.02);
+  height:100%;
+}
+.grid-line:first-child {
+  border-left: 1px solid rgba(0,0,0,0.02);
+}
+
+/* Hero Section */
+header{
+  padding:7rem 0 4.5rem;
+  border-bottom:1px solid var(--border-strong);
+  position:relative;
+}
+.hero-flex{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:3rem;
+  align-items:start;
+}
+@media(min-width:1024px){
+  .hero-flex{
+    grid-template-columns:1.2fr 0.8fr;
+  }
+}
+.hero-left{max-width:720px}
+.hero-right{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  align-self:stretch;
+  justify-content:space-between;
+}
+
+/* Active Status Badge */
+.status-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 12px;
+  background:#ffffff;
+  border:1px solid var(--border);
+  border-radius:100px;
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+}
+.status-badge .dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--success);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+h1{
+  font-family:'Lora',serif;
+  font-size:clamp(2.8rem,7vw,4.8rem);
+  font-weight:500;
+  letter-spacing:-0.03em;
+  line-height:0.95;
+  margin:1.5rem 0 1.25rem;
+  color:var(--text);
+}
+.bio{
+  font-size:17px;
+  line-height:1.65;
+  color:var(--text-muted);
+  font-weight:400;
+  letter-spacing:-0.01em;
+  margin-bottom:2rem;
+}
+
+/* Coordinate buttons */
+.coords-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.coord-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  background:#ffffff;
+  border:1px solid var(--border);
+  border-radius:50%;
+  color:var(--text-muted);
+  transition:all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.coord-btn:hover{
+  border-color:var(--text);
+  color:var(--accent-light);
+  background:var(--surface-hover);
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(0,0,0,0.04);
+}
+
+/* Interactive Sandbox Console Widget */
+.sandbox-console {
+  background:#1e1e24;
+  border:1px solid var(--border-strong);
+  border-radius:12px;
+  overflow:hidden;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:#f1f1f1;
+  display:flex;
+  flex-direction:column;
+  height:260px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.08);
+}
+.console-bar {
+  background:#2e2e38;
+  height:30px;
+  display:flex;
+  align-items:center;
+  padding:0 12px;
+  justify-content:space-between;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.console-title {
+  color:#a1a1aa;
+  font-size:9.5px;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+}
+.console-body {
+  padding:16px;
+  flex:1;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  scrollbar-width:none;
+}
+.console-body::-webkit-scrollbar { display:none }
+.console-input-row {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:auto;
+  border-top:1px solid rgba(255,255,255,0.05);
+  padding:10px 16px;
+  background:#23232a;
+}
+.console-btn {
+  padding:6px 12px;
+  background:var(--accent-light);
+  border:none;
+  color:#ffffff;
+  font-family:inherit;
+  font-size:10px;
+  font-weight:600;
+  border-radius:4px;
+  cursor:pointer;
+  transition:background 0.2s;
+}
+.console-btn:hover { background:#6d28d9 }
+.console-input-wrap {
+  flex:1;
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+.console-input {
+  background:transparent;
+  border:none;
+  color:#ffffff;
+  outline:none;
+  font-family:inherit;
+  font-size:11px;
+  width:100%;
+}
+.c-prompt { color:#818cf8 }
+
+/* Navigation & Filtering */
+.nav-section{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.5rem;
+  padding:2rem 0;
+  border-bottom:1px solid var(--border-strong);
+}
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.pill{
+  padding:8px 18px;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  border-radius:100px;
+  cursor:pointer;
+  transition:all 0.2s;
+  border:1px solid var(--border);
+  background:#ffffff;
+  color:var(--text-muted);
+  font-family:'Inter',sans-serif;
+}
+.pill:hover{
+  color:var(--text);
+  border-color:var(--text-light);
+}
+.pill.on{
+  background:var(--text);
+  color:var(--bg);
+  border-color:var(--text);
+}
+
+/* Editorial Grid Layout */
+.bento{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0;
+  border-left:1px solid var(--border);
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:0;
+  margin-bottom:6rem;
+}
+@media(min-width:768px){
+  .bento{grid-template-columns:repeat(2,1fr)}
+}
+@media(min-width:1200px){
+  .bento{grid-template-columns:repeat(3,1fr)}
+}
+
+/* Bento Card Elements */
+.card{
+  background:#ffffff;
+  border-top:1px solid var(--border);
+  border-right:1px solid var(--border);
+  padding:2.5rem;
+  cursor:pointer;
+  transition:all 0.35s cubic-bezier(0.16,1,0.3,1);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  position:relative;
+  min-height:380px;
+}
+.card:nth-child(even) {
+  background:#fdfdfc;
+}
+@media(min-width:1200px){
+  .card.wide{grid-column:span 2}
+}
+
+.card:hover{
+  background:#ffffff;
+  z-index:2;
+  box-shadow:inset 0 0 0 1px var(--text), 0 12px 36px rgba(0,0,0,0.03);
+}
+
+.c-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:1.5rem;
+}
+.c-type{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9.5px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--accent-light);
+  font-weight:600;
+}
+.c-date{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--text-light);
+}
+.c-body{flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.c-title{
+  font-family:'Lora',serif;
+  font-size:24px;
+  font-weight:500;
+  letter-spacing:-0.01em;
+  line-height:1.2;
+  color:var(--text);
+  margin-bottom:10px;
+}
+.c-sub{
+  font-size:14px;
+  color:var(--text-muted);
+  line-height:1.6;
+  margin-bottom:2rem;
+}
+
+/* High Fidelity Technical Graphics */
+.card-visual{
+  height:120px;
+  margin-top:auto;
+  border-radius:8px;
+  background:#faf9f6;
+  border:1px solid var(--border);
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all 0.3s;
+}
+.card:hover .card-visual {
+  border-color:var(--text);
+  background:#ffffff;
+}
+
+/* SecOps Radar */
+.radar-grid {
+  position:absolute;
+  inset:0;
+  background-image: 
+    linear-gradient(rgba(124,58,237,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,58,237,0.03) 1px, transparent 1px);
+  background-size: 16px 16px;
+  background-position: center;
+}
+.radar-sweep {
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  border:1px dashed rgba(124,58,237,0.2);
+  position:relative;
+  transition:all 0.3s;
+}
+.radar-sweep::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:conic-gradient(from 0deg, var(--accent-light), transparent 60%);
+  opacity:0.12;
+  animation:radar-rotate 3.5s linear infinite;
+}
+.card:hover .radar-sweep::after {
+  animation-duration: 1.5s;
+}
+.radar-sweep::before {
+  content:'';
+  position:absolute;
+  top:50%;left:50%;
+  width:4px;height:4px;
+  background:var(--accent-light);
+  border-radius:50%;
+  transform:translate(-50%, -50%);
+  box-shadow:0 0 8px var(--accent-light);
+}
+@keyframes radar-rotate{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.radar-coordinates {
+  position:absolute;
+  bottom:8px;
+  right:12px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:8.5px;
+  color:var(--text-light);
+}
+
+/* Terminal simulator */
+.terminal-window {
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--text-muted);
+}
+.terminal-header {
+  height:24px;
+  background:#f2effa;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  padding:0 10px;
+  gap:5px;
+}
+.terminal-dot {
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:rgba(0,0,0,0.15);
+}
+.terminal-dot.red { background:#ef4444; opacity:0.7 }
+.terminal-dot.yellow { background:#f59e0b; opacity:0.7 }
+.terminal-dot.green { background:#10b981; opacity:0.7 }
+.terminal-title {
+  margin-left:6px;
+  font-size:9px;
+  color:var(--text-light);
+}
+.terminal-content {
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  flex:1;
+  justify-content:center;
+}
+.terminal-line {
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:flex;
+  gap:6px;
+  transition:color 0.2s;
+}
+.card:hover .terminal-line {
+  color:var(--text);
+}
+.t-sec { color:var(--accent-light) }
+.t-ok { color:var(--success) }
+
+/* Supply Flow Diagram */
+.supply-flow-map {
+  width:85%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:relative;
+}
+.supply-line-path {
+  position:absolute;
+  left:10px;
+  right:10px;
+  height:1px;
+  border-top:1px dashed var(--text-light);
+  opacity:0.4;
+  z-index:1;
+}
+.supply-node {
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:#ffffff;
+  border:1px solid var(--border-strong);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:2;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  font-weight:600;
+  transition:all 0.3s;
+}
+.card:hover .supply-node {
+  border-color:var(--text);
+  box-shadow:0 4px 10px rgba(0,0,0,0.03);
+}
+.supply-node.pulse {
+  border-color:var(--accent-light);
+  color:var(--accent-light);
+  box-shadow:0 0 12px var(--accent-glow);
+}
+.card:hover .supply-node.pulse {
+  animation:pulse-glow 1s infinite alternate;
+}
+@keyframes pulse-glow {
+  0% { box-shadow:0 0 4px var(--accent-glow) }
+  100% { box-shadow:0 0 16px rgba(124,58,237,0.3) }
+}
+.supply-node-lbl {
+  font-size:7px;
+  color:var(--text-light);
+  text-transform:uppercase;
+  margin-top:2px;
+}
+
+/* Pipeline Track */
+.pipe-graph {
+  width:80%;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.pipe-bar-container {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.pipe-label {
+  font-family:'JetBrains Mono',monospace;
+  font-size:8.5px;
+  color:var(--text-light);
+  width:50px;
+}
+.pipe-line {
+  flex:1;
+  height:6px;
+  background:rgba(0,0,0,0.04);
+  border-radius:10px;
+  overflow:hidden;
+  position:relative;
+}
+.pipe-fill {
+  height:100%;
+  width:0%;
+  background:var(--accent-light);
+  border-radius:10px;
+  animation:pipeline-animate 2.5s ease-out infinite alternate;
+}
+@keyframes pipeline-animate{0%{width:15%}100%{width:90%}}
+.pipe-fill.f1 { animation-delay: 0s }
+.pipe-fill.f2 { animation-delay: 0.3s }
+.pipe-fill.f3 { animation-delay: 0.6s }
+
+/* Scientific abstract visual */
+.doc-box {
+  width:85%;
+  height:80%;
+  background:#ffffff;
+  border:1px solid var(--border);
+  box-shadow:0 4px 12px rgba(0,0,0,0.01);
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:all 0.3s;
+}
+.card:hover .doc-box {
+  border-color:var(--text);
+  box-shadow:0 6px 16px rgba(0,0,0,0.03);
+}
+.doc-header {
+  font-family:'JetBrains Mono',monospace;
+  font-size:7.5px;
+  color:var(--text-light);
+  border-bottom:1px solid var(--border);
+  padding-bottom:6px;
+}
+.doc-body-preview {
+  font-family:'Lora',serif;
+  font-size:9.5px;
+  font-style:italic;
+  line-height:1.4;
+  color:var(--text-muted);
+  padding:6px 0;
+}
+.doc-footer {
+  font-family:'JetBrains Mono',monospace;
+  font-size:7px;
+  color:var(--accent-light);
+}
+
+/* Card visual SVG glow interaction */
+.card-visual svg {
+  transition:transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s;
+}
+.card:hover .card-visual svg {
+  transform:scale(1.08);
+  filter:drop-shadow(0 4px 8px var(--accent-glow));
+}
+
+/* Card layout tags */
+.c-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:12px;
+}
+.c-tag{
+  font-size:10px;
+  font-weight:500;
+  padding:3px 8px;
+  border-radius:4px;
+  background:#ffffff;
+  border:1px solid var(--border);
+  color:var(--text-muted);
+  font-family:'JetBrains Mono',monospace;
+}
+
+.arrow-link{
+  position:absolute;
+  bottom:2.5rem;
+  right:2.5rem;
+  font-size:18px;
+  color:var(--text-light);
+  transition:all 0.25s;
+  pointer-events:none;
+}
+.card:hover .arrow-link{
+  color:var(--accent-light);
+  transform:translate(3px, -3px);
+}
+
+/* Deep Dive Overlay - Premium Light Theme */
+#overlay{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:var(--bg);
+  transform:translateX(100%);
+  transition:transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color:var(--border-strong) transparent;
+}
+#overlay.open{transform:translateX(0)}
+#overlay::-webkit-scrollbar{width:4px}
+#overlay::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:99px}
+
+.ov-bar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(252,251,249,0.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:1.5rem clamp(1.5rem,6vw,6rem);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.back{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  font-weight:600;
+  color:var(--text);
+  cursor:pointer;
+  transition:all 0.2s;
+  background:none;
+  border:none;
+  font-family:inherit;
+}
+.back:hover{
+  color:var(--accent-light);
+  transform:translateX(-2px);
+}
+.ov-inner{
+  max-w:1200px;
+  margin:0 auto;
+  padding:5rem clamp(1.5rem,6vw,6rem) 7rem;
+}
+.ov-type{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--accent-light);
+  font-weight:600;
+  margin-bottom:1rem;
+  display:block;
+}
+.ov-title{
+  font-family:'Lora',serif;
+  font-size:clamp(2rem,5vw,3.5rem);
+  font-weight:500;
+  letter-spacing:-0.02em;
+  line-height:1.1;
+  margin-bottom:1rem;
+  color:var(--text);
+}
+.ov-sub{
+  font-size:18px;
+  color:var(--text-muted);
+  margin-bottom:3.5rem;
+  line-height:1.55;
+  max-width:850px;
+}
+.ov-divider{
+  height:1px;
+  background:var(--border);
+  margin-bottom:3.5rem;
+}
+.ov-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:3rem;
+}
+@media(min-width:768px){
+  .ov-grid{grid-template-columns:repeat(3,1fr);gap:4rem}
+}
+.ov-col h2{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--text-light);
+  margin-bottom:1.5rem;
+  padding-bottom:0.75rem;
+  border-bottom:1px solid var(--border);
+}
+.ov-col p{
+  font-size:15px;
+  line-height:1.8;
+  color:var(--text-muted);
+}
+.ov-col ul{list-style:none;padding:0}
+.ov-col li{
+  font-size:14px;
+  color:var(--text-muted);
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  line-height:1.5;
+}
+.ov-col li::before{
+  content:'→';
+  color:var(--accent-light);
+  font-weight:bold;
+  flex-shrink:0;
+}
+.ov-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:1.25rem;
+}
+.ov-tag{
+  font-size:11px;
+  padding:4px 10px;
+  border-radius:6px;
+  background:#ffffff;
+  border:1px solid var(--border);
+  color:var(--text-muted);
+  font-family:'JetBrains Mono',monospace;
+}
+.ov-links{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:1.5rem;
+}
+.ov-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:12px 20px;
+  border:1px solid var(--border-strong);
+  border-radius:8px;
+  font-size:13px;
+  font-weight:600;
+  color:var(--text);
+  transition:all 0.2s;
+  background:#ffffff;
+}
+.ov-link:hover{
+  border-color:var(--text);
+  background:var(--surface-hover);
+  transform:translateY(-1px);
+}
+
+/* Footer Section */
+footer{
+  border-top:1px solid var(--border-strong);
+  padding:4rem 0;
+  background:#ffffff;
+  position:relative;
+  z-index:2;
+}
+footer .wrap{
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+  align-items:center;
+  justify-content:space-between;
+  font-size:13px;
+  color:var(--text-light);
+}
+@media(min-width:768px){
+  footer .wrap{flex-direction:row}
+}
+footer a{
+  color:var(--text-muted);
+  transition:color 0.2s;
+}
+footer a:hover{color:var(--accent-light)}
+
+/* Page reveal/fade-up */
+.fade-up{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fade-up.show{
+  opacity:1;
+  transform:translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor Spotlight Glow element -->
+<div id="spotlight"></div>
+
+<!-- Vertical editorial grid lines -->
+<div class="grid-lines">
+  <div class="grid-line"></div>
+  <div class="grid-line"></div>
+  <div class="grid-line"></div>
+  <div class="grid-line"></div>
+</div>
+
+<header class="wrap">
+  <div class="hero-flex">
+    <div class="hero-left">
+      <div class="status-badge">
+        <span class="dot"></span>Available for opportunities
+      </div>
+      <h1>Atharva Meherkar.</h1>
+      <p class="bio">Computer Engineering student at Vishwakarma University. Designing secure digital foundations through threat modeling, automated pipeline analysis, and production systems orchestration.</p>
+      
+      <div class="coords-grid">
+        <a href="./Atharva_Meherkar_Resume.pdf" target="_blank" class="coord-btn" title="Resume" aria-label="Resume">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
+        </a>
+        <a href="https://github.com/AtharvaMeherkar" target="_blank" class="coord-btn" title="GitHub" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/atharva-meherkar-16119a328" target="_blank" class="coord-btn" title="LinkedIn" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+        <a href="mailto:atharvameherkar123@gmail.com" class="coord-btn" title="Email" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+        </a>
+      </div>
+    </div>
+    
+    <div class="hero-right">
+      <!-- Interactive Cybersecurity Sandbox Console -->
+      <div class="sandbox-console">
+        <div class="console-bar">
+          <span class="console-title">secops-sandbox_v1.0.sh</span>
+          <div style="display:flex;gap:4px">
+            <span style="width:7px;height:7px;background:#ef4444;border-radius:50%"></span>
+            <span style="width:7px;height:7px;background:#f59e0b;border-radius:50%"></span>
+            <span style="width:7px;height:7px;background:#10b981;border-radius:50%"></span>
           </div>
+        </div>
+        <div class="console-body" id="console-output">
+          <div style="color:var(--accent-light);font-weight:bold">Atharva Meherkar Security Console</div>
+          <div style="color:var(--text-light)">Type 'help' or click run to initiate audit.</div>
+          <div style="color:var(--text-light)">----------------------------------------</div>
+        </div>
+        <div class="console-input-row">
+          <button class="console-btn" onclick="runConsoleScan()">Run Security Scan</button>
+          <div class="console-input-wrap">
+            <span class="c-prompt">guest@secops:~$</span>
+            <input type="text" class="console-input" id="console-input" placeholder="type 'help'..." onkeydown="handleConsoleInput(event)">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 
-          <div class="hero-right">
-            <div class="hero-image">
-              <img
-                src="images/atharva-photo.jpg"
-                alt="Atharva Meherkar"
-                class="profile-photo"
-              />
-              <div class="photo-glow"></div>
-              <div class="floating-elements">
-                <div class="floating-icon" style="--delay: 0s">
-                  <i class="fas fa-shield-alt"></i>
-                </div>
-                <div class="floating-icon" style="--delay: 1s">
-                  <i class="fas fa-code"></i>
-                </div>
-                <div class="floating-icon" style="--delay: 2s">
-                  <i class="fas fa-bug"></i>
-                </div>
-                <div class="floating-icon" style="--delay: 3s">
-                  <i class="fas fa-lock"></i>
-                </div>
-              </div>
+<nav class="wrap">
+  <div class="nav-section">
+    <div class="filters">
+      <button class="pill on" data-f="all" onclick="filter('all')">All Work</button>
+      <button class="pill" data-f="exp" onclick="filter('exp')">Experience</button>
+      <button class="pill" data-f="proj" onclick="filter('proj')">Projects</button>
+      <button class="pill" data-f="cert" onclick="filter('cert')">Credentials</button>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text-light)">
+      LAST UPDATED: JUN 2026
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="bento" id="bento-grid">
+
+    <!-- SecOps AI -->
+    <div class="card wide fade-up" data-c="proj" onclick="dive('secops')">
+      <div class="c-meta">
+        <span class="c-type">Project · Security Automation</span>
+        <span class="c-date">Apr 2026</span>
+      </div>
+      <div class="c-body">
+        <div>
+          <h2 class="c-title">SecOps AI Threat Analyzer</h2>
+          <p class="c-sub">An automated concurrent scanning platform utilizing anomaly detection pipelines to surface web system vulnerabilities without manual pentest overhead.</p>
+        </div>
+        <div class="card-visual">
+          <div class="radar-grid"></div>
+          <div class="radar-sweep"></div>
+          <span class="radar-coordinates">LAT: 18.5204 / LON: 73.8567</span>
+        </div>
+        <div class="c-tags">
+          <span class="c-tag">Python</span>
+          <span class="c-tag">Scikit-Learn</span>
+          <span class="c-tag">BeautifulSoup</span>
+        </div>
+      </div>
+      <span class="arrow-link">↗</span>
+    </div>
+
+    <!-- Cyber Security Analyst -->
+    <div class="card fade-up" data-c="exp" onclick="dive('csa')">
+      <div class="c-meta">
+        <span class="c-type">Experience</span>
+        <span class="c-date">Feb 2026 — Present</span>
+      </div>
+      <div class="c-body">
+        <div>
+          <h2 class="c-title">Cyber Security Analyst Intern</h2>
+          <p class="c-sub">Executing vulnerability assessments, threat intelligence parsing, and environment monitoring at AENEXZ Tech.</p>
+        </div>
+        <div class="card-visual">
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+              <span class="terminal-title">aenexz_secOps.sh</span>
+            </div>
+            <div class="terminal-content">
+              <div class="terminal-line"><span class="t-sec">$</span> monitor --prod</div>
+              <div class="terminal-line"><span class="t-ok">OK</span> scan complete (0 vulns)</div>
+              <div class="terminal-line"><span class="t-sec">$</span> syslog --watch</div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+      <span class="arrow-link">↗</span>
+    </div>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-      <div class="container">
-        <h2>About Me</h2>
-        <div class="about-content">
-          <div class="about-text">
-            <p>
-              I'm a passionate cybersecurity developer and full-stack engineer
-              with expertise in building secure, scalable applications. My
-              journey in technology began with a fascination for how systems
-              work and how they can be protected.
-            </p>
-            <p>
-              I specialize in developing applications with security-first
-              principles, implementing robust authentication systems, and
-              conducting thorough security audits. My experience spans from
-              frontend development to backend infrastructure and everything in
-              between.
-            </p>
-            <p>
-              When I'm not coding, you'll find me researching the latest
-              cybersecurity threats, contributing to open-source security tools,
-              or participating in CTF (Capture The Flag) competitions to sharpen
-              my skills.
-            </p>
+    <!-- Morning Basket CTO -->
+    <div class="card fade-up" data-c="exp" onclick="dive('cto')">
+      <div class="c-meta">
+        <span class="c-type">Experience</span>
+        <span class="c-date">Jan 2026 — Present</span>
+      </div>
+      <div class="c-body">
+        <div>
+          <h2 class="c-title">Chief Technology Officer (CTO)</h2>
+          <p class="c-sub">Driving strategy and production delivery architecture for MorningBasket startup operations.</p>
+        </div>
+        <div class="card-visual">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-light);"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" fill="var(--accent-glow)"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span style="position: absolute; bottom: 8px; font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--text-light); letter-spacing: 0.05em;">STARTUP CTO LOGISTICS</span>
+        </div>
+      </div>
+      <span class="arrow-link">↗</span>
+    </div>
+
+    <!-- Morning Basket Ecosystem -->
+    <div class="card wide fade-up" data-c="proj" onclick="dive('mb')">
+      <div class="c-meta">
+        <span class="c-type">Project · E-Commerce</span>
+        <span class="c-date">Apr 2026</span>
+      </div>
+      <div class="c-body">
+        <div>
+          <h2 class="c-title">Morning Basket Web Ecosystem</h2>
+          <p class="c-sub">Complete customer interface and localized supply chain integration layer servicing active deliveries in Pune.</p>
+        </div>
+        <div class="card-visual">
+          <div class="supply-flow-map">
+            <div class="supply-line-path"></div>
+            <div class="supply-node">S<span class="supply-node-lbl">Store</span></div>
+            <div class="supply-node">W<span class="supply-node-lbl">WH</span></div>
+            <div class="supply-node pulse">T<span class="supply-node-lbl">Transit</span></div>
+            <div class="supply-node">D<span class="supply-node-lbl">Deliv</span></div>
           </div>
+        </div>
+        <div class="c-tags">
+          <span class="c-tag">TypeScript</span>
+          <span class="c-tag">React</span>
+          <span class="c-tag">Node.js</span>
+          <span class="c-tag">Vercel</span>
+        </div>
+      </div>
+      <span class="arrow-link">↗</span>
+    </div>
 
-          <div class="skills">
-            <h3>Technical Skills</h3>
-            <div class="skills-grid">
-              <div class="skill-item">
-                <i class="fab fa-python"></i>
-                <h4>Python</h4>
-                <p>
-                  Flask, Pandas, NumPy, Matplotlib, Scikit-learn, PyTorch,
-                  Tkinter
-                </p>
-              </div>
-              <div class="skill-item">
-                <i class="fab fa-java"></i>
-                <h4>Java</h4>
-                <p>Core Java, OOP, Spring Boot (Concepts)</p>
-              </div>
-              <div class="skill-item">
-                <i class="fab fa-js"></i>
-                <h4>JavaScript</h4>
-                <p>ReactJS, Node.js, Express.js, Socket.IO, Fetch API</p>
-              </div>
-              <div class="skill-item">
-                <i class="fab fa-html5"></i>
-                <h4>HTML5</h4>
-                <p>Semantic Structure, Accessibility</p>
-              </div>
-              <div class="skill-item">
-                <i class="fab fa-css3-alt"></i>
-                <h4>CSS3</h4>
-                <p>Flexbox, Grid, Animations, Responsive Design</p>
-              </div>
-              <div class="skill-item">
-                <i class="fas fa-shield-alt"></i>
-                <h4>Cybersecurity</h4>
-                <p>
-                  Log Analysis, Encryption, Network Security, XAI, Malware
-                  Analysis
-                </p>
-              </div>
-              <div class="skill-item">
-                <i class="fas fa-brain"></i>
-                <h4>AI/ML</h4>
-                <p>NLP, Computer Vision, Recommender Systems, XAI</p>
-              </div>
-              <div class="skill-item">
-                <i class="fas fa-database"></i>
-                <h4>Databases</h4>
-                <p>MySQL, SQLite, MongoDB (Concepts)</p>
-              </div>
-              <div class="skill-item">
-                <i class="fab fa-git-alt"></i>
-                <h4>Git & Version Control</h4>
-                <p>Branching, Merging, Collaboration</p>
-              </div>
-              <div class="skill-item">
-                <i class="fas fa-terminal"></i>
-                <h4>Tools & Platforms</h4>
-                <p>VS Code, Jupyter, Postman, Linux, npm</p>
-              </div>
-              <div class="skill-item">
-                <i class="fas fa-shield-alt"></i>
-                <h4>Security-First Development</h4>
-                <p>
-                  Building applications with security as the foundation, not an
-                  afterthought
-                </p>
-              </div>
-              <div class="skill-item">
-                <i class="fas fa-code"></i>
-                <h4>Full-Stack Expertise</h4>
-                <p>
-                  End-to-end development from database design to user interface
-                </p>
-              </div>
-              <div class="skill-item">
-                <i class="fas fa-bug"></i>
-                <h4>Penetration Testing</h4>
-                <p>
-                  Identifying and fixing vulnerabilities before they become
-                  threats
-                </p>
-              </div>
-              <div class="skill-item">
-                <i class="fas fa-users"></i>
-                <h4>Team Collaboration</h4>
-                <p>
-                  Working effectively in agile teams to deliver secure solutions
-                </p>
-              </div>
+    <!-- Malware Sandbox Orchestrator -->
+    <div class="card fade-up" data-c="proj" onclick="dive('ms')">
+      <div class="c-meta">
+        <span class="c-type">Project · Virtualization</span>
+        <span class="c-date">Aug 2025</span>
+      </div>
+      <div class="c-body">
+        <div>
+          <h2 class="c-title">Malware Sandbox Orchestrator</h2>
+          <p class="c-sub">Script-driven isolated guest OS environments capturing execution telemetry, call traces, and registry mutations.</p>
+        </div>
+        <div class="card-visual">
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+              <span class="terminal-title">guest_win11_vm</span>
             </div>
+            <div class="terminal-content">
+              <div class="terminal-line"><span class="t-sec">STATE:</span> ISOLATED</div>
+              <div class="terminal-line"><span class="t-sec">SYSTEM:</span> Intercepting syscalls...</div>
+              <div class="terminal-line"><span class="t-ok">LOGS:</span> Active hooks ok</div>
+            </div>
+          </div>
+        </div>
+        <div class="c-tags">
+          <span class="c-tag">Python</span>
+          <span class="c-tag">VirtualBox API</span>
+        </div>
+      </div>
+      <span class="arrow-link">↗</span>
+    </div>
+
+    <!-- Lead-Nexus -->
+    <div class="card fade-up" data-c="proj" onclick="dive('ln')">
+      <div class="c-meta">
+        <span class="c-type">Project · Engineering Capstone</span>
+        <span class="c-date">Nov 2025</span>
+      </div>
+      <div class="c-body">
+        <div>
+          <h2 class="c-title">Lead-Nexus Pipeline Manager</h2>
+          <p class="c-sub">High-speed lead enrichment platform utilizing optimized PostgreSQL indices to reduce latency spikes.</p>
+        </div>
+        <div class="card-visual">
+          <div class="pipe-graph">
+            <div class="pipe-bar-container">
+              <span class="pipe-label">Ingest</span>
+              <div class="pipe-line"><div class="pipe-fill f1"></div></div>
+            </div>
+            <div class="pipe-bar-container">
+              <span class="pipe-label">Enrich</span>
+              <div class="pipe-line"><div class="pipe-fill f2"></div></div>
+            </div>
+            <div class="pipe-bar-container">
+              <span class="pipe-label">Deliver</span>
+              <div class="pipe-line"><div class="pipe-fill f3"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="c-tags">
+          <span class="c-tag">TypeScript</span>
+          <span class="c-tag">React</span>
+          <span class="c-tag">PostgreSQL</span>
+        </div>
+      </div>
+      <span class="arrow-link">↗</span>
+    </div>
+
+    <!-- Research Publication -->
+    <div class="card fade-up" data-c="proj" onclick="dive('pub')">
+      <div class="c-meta">
+        <span class="c-type">Research · Publication</span>
+        <span class="c-date">Mar 2026</span>
+      </div>
+      <div class="c-body">
+        <div>
+          <h2 class="c-title">Journal @ AI Summit 2026</h2>
+          <p class="c-sub">"Deconstructive Data Architecture: A Protocol for Semantic Atomicity and Stateless Reconstruction."</p>
+        </div>
+        <div class="card-visual">
+          <div class="doc-box">
+            <div class="doc-header">REF: AI-SUMMIT-2026-CONF</div>
+            <div class="doc-body-preview">"...semantic atomicity parameters eliminate recovery operational overhead..."</div>
+            <div class="doc-footer">DOI: 10.1109/AISUMMIT.2026.0024</div>
           </div>
         </div>
       </div>
-    </section>
+      <span class="arrow-link">↗</span>
+    </div>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-      <div class="container">
-        <h2>Featured Projects</h2>
-        <p class="section-subtitle">
-          A showcase of my recent work demonstrating security expertise,
-          full-stack development, and innovative problem-solving
-        </p>
-
-        <div class="project-grid">
-          <!-- Lead-Nexus -->
-          <div class="project-card">
-            <div class="project-image">
-              <img src="images/project-syncflow.jpg" alt="Lead-Nexus Project" />
-            </div>
-            <div class="project-content">
-              <h3>Lead-Nexus</h3>
-              <p>
-                Advanced lead management system with secure authentication,
-                real-time analytics, and automated workflow optimization.
-                Features role-based access control and comprehensive audit
-                trails.
-              </p>
-              <div class="project-tech">
-                <span>React.js</span>
-                <span>Node.js</span>
-                <span>MongoDB</span>
-                <span>JWT</span>
-                <span>Socket.io</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/lead-nexus"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Malware Sandbox Orchestrator -->
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="images/project-security-dashboard.jpg"
-                alt="Malware Sandbox Project"
-              />
-            </div>
-            <div class="project-content">
-              <h3>Malware Sandbox Orchestrator</h3>
-              <p>
-                Automated malware analysis platform with isolated execution
-                environments, behavioral analysis, and threat intelligence
-                integration. Provides detailed reports on malware behavior and
-                indicators of compromise.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>Docker</span>
-                <span>Elasticsearch</span>
-                <span>Kibana</span>
-                <span>VirusTotal API</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/malware-sandbox-orchestrator"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Phishing Email Analyzer -->
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="images/project-url-analyzer.jpg"
-                alt="Phishing Analyzer Project"
-              />
-            </div>
-            <div class="project-content">
-              <h3>Phishing Email Analyzer</h3>
-              <p>
-                AI-powered email security tool that detects phishing attempts
-                using machine learning, URL analysis, and content scanning.
-                Integrates with email systems for real-time protection.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>TensorFlow</span>
-                <span>NLP</span>
-                <span>Flask</span>
-                <span>PostgreSQL</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/phishing-email-analyzer"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Real-Time Stock Anomaly Detector -->
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="images/project-ai-classifier.jpg"
-                alt="Stock Anomaly Detector"
-              />
-            </div>
-            <div class="project-content">
-              <h3>Real-Time Stock Anomaly Detector</h3>
-              <p>
-                Advanced financial analysis tool using machine learning to
-                detect unusual trading patterns and potential market
-                manipulation. Provides real-time alerts and comprehensive risk
-                assessment.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>Scikit-learn</span>
-                <span>Pandas</span>
-                <span>WebSocket</span>
-                <span>Redis</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/Real-Time-Stock-Anomaly-Detector"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- AI Sentiment Analyzer -->
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="images/project-movie-recommender.jpg"
-                alt="AI Sentiment Analyzer"
-              />
-            </div>
-            <div class="project-content">
-              <h3>AI Sentiment Analyzer</h3>
-              <p>
-                Natural language processing tool that analyzes text sentiment
-                with high accuracy. Used for social media monitoring, customer
-                feedback analysis, and brand reputation management.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>NLTK</span>
-                <span>Transformers</span>
-                <span>FastAPI</span>
-                <span>Docker</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/AI-Sentiment-Analyzer"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Budget Tracker -->
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="images/project-budget-tracker.jpg"
-                alt="Budget Tracker"
-              />
-            </div>
-            <div class="project-content">
-              <h3>Secure Budget Tracker</h3>
-              <p>
-                Personal finance management application with end-to-end
-                encryption, secure data storage, and comprehensive spending
-                analytics. Features multi-factor authentication and secure data
-                backup.
-              </p>
-              <div class="project-tech">
-                <span>React.js</span>
-                <span>Node.js</span>
-                <span>PostgreSQL</span>
-                <span>AES-256</span>
-                <span>Chart.js</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/ai-budget-tracker"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Password Manager -->
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="images/project-password-manager.jpg"
-                alt="Password Manager"
-              />
-            </div>
-            <div class="project-content">
-              <h3>Secure Password Manager</h3>
-              <p>
-                Encrypted password management system with master key protection,
-                secure password generation, and breach monitoring. Features
-                zero-knowledge architecture and secure sharing capabilities.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>AES-256</span>
-                <span>SQLite</span>
-                <span>Tkinter</span>
-                <span>Cryptography</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/secure-password-manager"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Real-Time Chat Application -->
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="images/project-realtime-chat.jpg"
-                alt="Real-Time Chat"
-              />
-            </div>
-            <div class="project-content">
-              <h3>Real-Time Chat Application</h3>
-              <p>
-                Secure messaging platform with end-to-end encryption, real-time
-                communication, and file sharing capabilities. Features user
-                authentication and message encryption.
-              </p>
-              <div class="project-tech">
-                <span>React.js</span>
-                <span>Socket.io</span>
-                <span>Node.js</span>
-                <span>MongoDB</span>
-                <span>WebRTC</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/realtime-chat-app"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- E-Commerce Platform -->
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="images/project-ecommerce.jpg"
-                alt="E-Commerce Platform"
-              />
-            </div>
-            <div class="project-content">
-              <h3>Secure E-Commerce Platform</h3>
-              <p>
-                Full-stack e-commerce solution with secure payment processing,
-                inventory management, and user authentication. Features PCI
-                compliance and fraud detection.
-              </p>
-              <div class="project-tech">
-                <span>React.js</span>
-                <span>Node.js</span>
-                <span>Stripe API</span>
-                <span>PostgreSQL</span>
-                <span>Redis</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/secure-ecommerce-platform"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Log Analysis Tool -->
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="images/project-log-analyzer.jpg"
-                alt="Log Analysis Tool"
-              />
-            </div>
-            <div class="project-content">
-              <h3>Advanced Log Analysis Tool</h3>
-              <p>
-                Cybersecurity log analysis platform that processes and analyzes
-                system logs for threat detection. Features pattern recognition,
-                anomaly detection, and automated alerting.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>Elasticsearch</span>
-                <span>Kibana</span>
-                <span>Machine Learning</span>
-                <span>Docker</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/log-analysis-tool"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- URL Analyzer -->
-          <div class="project-card">
-            <div class="project-image">
-              <img src="images/project-url-analyzer.jpg" alt="URL Analyzer" />
-            </div>
-            <div class="project-content">
-              <h3>URL Security Analyzer</h3>
-              <p>
-                Web security tool that analyzes URLs for malicious content,
-                phishing attempts, and suspicious patterns. Provides detailed
-                threat reports and safety scores.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>Flask</span>
-                <span>VirusTotal API</span>
-                <span>Machine Learning</span>
-                <span>SQLite</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/url-security-analyzer"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Weather Predictor -->
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="images/project-weather-predictor.jpg"
-                alt="Weather Predictor"
-              />
-            </div>
-            <div class="project-content">
-              <h3>AI Weather Predictor</h3>
-              <p>
-                Machine learning-based weather forecasting system using
-                historical data and atmospheric patterns. Provides accurate
-                predictions with confidence intervals.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>Scikit-learn</span>
-                <span>Pandas</span>
-                <span>NumPy</span>
-                <span>Matplotlib</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/ai-weather-predictor"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Movie Recommender -->
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="images/project-movie-recommender.jpg"
-                alt="Movie Recommender"
-              />
-            </div>
-            <div class="project-content">
-              <h3>Movie Recommendation System</h3>
-              <p>
-                Collaborative filtering-based movie recommendation engine with
-                user preference learning and content-based filtering. Features
-                personalized suggestions and rating predictions.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>Scikit-learn</span>
-                <span>Pandas</span>
-                <span>Flask</span>
-                <span>SQLite</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/movie-recommender"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Music Recommender -->
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="images/project-music-recommender.jpg"
-                alt="Music Recommender"
-              />
-            </div>
-            <div class="project-content">
-              <h3>Music Recommendation Engine</h3>
-              <p>
-                AI-powered music recommendation system using audio feature
-                analysis and user listening patterns. Provides personalized
-                playlists and discovery features.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>Spotify API</span>
-                <span>Machine Learning</span>
-                <span>Flask</span>
-                <span>MongoDB</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/music-recommender"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Generative Art -->
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="images/project-generative-art.jpg"
-                alt="Generative Art"
-              />
-            </div>
-            <div class="project-content">
-              <h3>AI Generative Art Platform</h3>
-              <p>
-                Creative AI platform that generates unique artwork using neural
-                networks and generative adversarial networks (GANs). Features
-                style transfer and custom art generation.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>TensorFlow</span>
-                <span>OpenCV</span>
-                <span>Flask</span>
-                <span>PIL</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/generative-art-platform"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- React UI Components -->
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="images/project-react-ui.jpg"
-                alt="React UI Components"
-              />
-            </div>
-            <div class="project-content">
-              <h3>React UI Component Library</h3>
-              <p>
-                Comprehensive React component library with modern design
-                patterns, accessibility features, and customizable themes.
-                Includes form components, navigation, and data visualization.
-              </p>
-              <div class="project-tech">
-                <span>React.js</span>
-                <span>TypeScript</span>
-                <span>Styled Components</span>
-                <span>Storybook</span>
-                <span>Jest</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/react-ui-library"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- DocLab -->
-          <div class="project-card">
-            <div class="project-image">
-              <img src="images/project-doclab.jpg" alt="DocLab" />
-            </div>
-            <div class="project-content">
-              <h3>DocLab - Document Management</h3>
-              <p>
-                Secure document management system with OCR capabilities, version
-                control, and collaborative editing. Features document encryption
-                and access control.
-              </p>
-              <div class="project-tech">
-                <span>React.js</span>
-                <span>Node.js</span>
-                <span>MongoDB</span>
-                <span>Tesseract OCR</span>
-                <span>AWS S3</span>
-              </div>
-              <a
-                href="https://github.com/AtharvaMeherkar/doclab"
-                target="_blank"
-                class="project-github-link"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
+    <!-- Google Cert -->
+    <div class="card fade-up" data-c="cert" onclick="dive('gc')">
+      <div class="c-meta">
+        <span class="c-type">Credential</span>
+        <span class="c-date">Aug 2025</span>
+      </div>
+      <div class="c-body">
+        <div>
+          <h2 class="c-title">Google Cybersecurity</h2>
+          <p class="c-sub">NIST-aligned professional security architectures, Linux auditing, and threat landscape modeling.</p>
+        </div>
+        <div class="card-visual">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-light);"><circle cx="12" cy="12" r="10" stroke-dasharray="3 3" opacity="0.4"></circle><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="var(--accent-glow)"></path><path d="m9 11 2 2 4-4" stroke-width="2"></path></svg>
+          <span style="position: absolute; bottom: 8px; font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--text-light); letter-spacing: 0.05em;">SECURE AUDIT PATH</span>
         </div>
       </div>
-    </section>
+      <span class="arrow-link">↗</span>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <h2>Get in Touch</h2>
-        <p class="contact-intro">
-          I'm always open to discussing new projects, collaboration
-          opportunities, or internship roles. Feel free to reach out through any
-          of the channels below!
-        </p>
-
-        <div class="contact-details">
-          <div class="contact-item">
-            <i class="fas fa-phone-alt contact-icon"></i>
-            <span class="contact-label">Phone:</span>
-            <a href="tel:+919322008526" class="contact-value">+91 9322008526</a>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-envelope contact-icon"></i>
-            <span class="contact-label">Email:</span>
-            <a href="mailto:atharvaameherkar@gmail.com" class="contact-value"
-              >atharvaameherkar@gmail.com</a
-            >
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt contact-icon"></i>
-            <span class="contact-label">Location:</span>
-            <span class="contact-value">Pune, Maharashtra, India</span>
-          </div>
+    <!-- IBM Cert -->
+    <div class="card fade-up" data-c="cert" onclick="dive('ibm')">
+      <div class="c-meta">
+        <span class="c-type">Credential</span>
+        <span class="c-date">Sep 2025</span>
+      </div>
+      <div class="c-body">
+        <div>
+          <h2 class="c-title">IBM Cybersecurity Fundamentals</h2>
+          <p class="c-sub">Foundational access management, cryptosystem workflows, and core operational CIA principles.</p>
         </div>
-
-        <div class="contact-actions">
-          <a
-            href="Atharva_Meherkar_Resume.pdf"
-            download
-            class="btn resume-download-btn"
-          >
-            <i class="fas fa-download"></i>
-            Download Resume
-          </a>
-        </div>
-
-        <div class="social-links">
-          <a
-            href="https://github.com/AtharvaMeherkar"
-            target="_blank"
-            aria-label="GitHub"
-          >
-            <i class="fab fa-github"></i>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/atharva-meherkar-16119a328/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3BNyD7qR%2BfSQS5jgdNjuEj1Q%3D%3D"
-            target="_blank"
-            aria-label="LinkedIn"
-          >
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a
-            href="https://www.instagram.com/atharva_meherkar_5335?igsh=MWZoM2Z6Z2FvcnY3dw=="
-            target="_blank"
-            aria-label="Instagram"
-          >
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="mailto:atharvaameherkar@gmail.com" aria-label="Email">
-            <i class="fas fa-envelope"></i>
-          </a>
+        <div class="card-visual">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-light);"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" fill="var(--accent-glow)"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path><circle cx="12" cy="16" r="1.5" fill="currentColor"></circle><path d="M12 17.5V19"></path></svg>
+          <span style="position: absolute; bottom: 8px; font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--text-light); letter-spacing: 0.05em;">CRYPTOSYSTEM VAULT</span>
         </div>
       </div>
-    </section>
+      <span class="arrow-link">↗</span>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <p>&copy; 2025 Atharva Meherkar. All rights reserved.</p>
-        <p>Designed and Developed by Atharva.</p>
+    <!-- Business Analyst -->
+    <div class="card fade-up" data-c="exp" onclick="dive('ba')">
+      <div class="c-meta">
+        <span class="c-type">Experience</span>
+        <span class="c-date">Jul — Dec 2025</span>
       </div>
-    </footer>
+      <div class="c-body">
+        <div>
+          <h2 class="c-title">Business Analyst Intern</h2>
+          <p class="c-sub">Mapped workflow optimizations and authoring data specifications at Edunet Foundation.</p>
+        </div>
+        <div class="card-visual">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-light);"><path d="M3 3v18h18" opacity="0.5"></path><path d="m19 9-5 5-4-4-3 3" stroke-width="2"></path><circle cx="19" cy="9" r="1.5" fill="currentColor"></circle><circle cx="14" cy="14" r="1.5" fill="currentColor"></circle><circle cx="10" cy="10" r="1.5" fill="currentColor"></circle></svg>
+          <span style="position: absolute; bottom: 8px; font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--text-light); letter-spacing: 0.05em;">WORKFLOW OPTIMIZATION</span>
+        </div>
+      </div>
+      <span class="arrow-link">↗</span>
+    </div>
 
-    <script src="script.js"></script>
-  </body>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 Atharva Meherkar</span>
+    <div style="display:flex;gap:1.5rem">
+      <a href="./Atharva_Meherkar_Resume.pdf" target="_blank">Resume</a>
+      <a href="https://github.com/AtharvaMeherkar" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/atharva-meherkar-16119a328" target="_blank">LinkedIn</a>
+      <a href="mailto:atharvameherkar123@gmail.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- OVERLAY -->
+<div id="overlay">
+  <div class="ov-bar">
+    <button class="back" onclick="close_()">← Back to Overview</button>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text-light)">PRESS ESC TO CLOSE</div>
+  </div>
+  <div class="ov-inner" id="ov-c"></div>
+</div>
+
+<script>
+const DATA={
+  secops:{
+    t:'SecOps AI Threat Analyzer',
+    s:'Enterprise-Grade Concurrent Web Vulnerability Scanner',
+    d:'Apr 2026',
+    tp:'Project',
+    st:['Python','Scikit-Learn','BeautifulSoup'],
+    ctx:'Built as a comprehensive automated vulnerability assessment tool targeting web application security surfaces. Designed to replace manual penetration testing workflows with intelligent, concurrent scanning pipelines.',
+    ch:'Engineered an automated security testing matrix executing multi-threaded vulnerability detection loops. Implemented Scikit-Learn anomaly detection models to flag structural code deviations and BeautifulSoup parsing modules to map DOM reflections, systematically removing manual validation pipelines from security health infrastructure.',
+    res:[
+      'Multi-threaded concurrent vulnerability scanning',
+      'ML-powered anomaly detection for code deviations',
+      'Automated DOM reflection mapping',
+      'Eliminated manual security validation bottlenecks'
+    ],
+    lk:[{l:'Source Code Repository',u:'https://github.com/AtharvaMeherkar/secops-ai-threat-analyzer'}]
+  },
+  ms:{
+    t:'Malware Sandbox Orchestrator',
+    s:'Automated Low-Level Telemetry Isolation Environment',
+    d:'Aug 2025',
+    tp:'Project',
+    st:['Python','VirtualBox API','Linux Subsystems'],
+    ctx:'Developed a secure malware analysis environment enabling safe execution and behavioral observation of suspicious binaries without risk to host systems.',
+    ch:'Architected a secure automated script suite managing localized VirtualBox virtualization layers. Programmatically deploys dynamic guest OS environments to execute suspicious binaries safely within isolated networks, hooking directly into low-level host telemetry channels to intercept registry modifications, system call sequences, and network indicator-of-compromise (IOC) indicators.',
+    res:[
+      'Automated VM provisioning and teardown',
+      'Real-time registry and syscall interception',
+      'Network IOC extraction pipeline',
+      'Complete host isolation guarantees'
+    ],
+    lk:[{l:'Source Code Repository',u:'https://github.com/AtharvaMeherkar/malware-sandbox-orchestrator'}]
+  },
+  ln:{
+    t:'Lead-Nexus: Discovery & Pipeline Manager',
+    s:'Final-Year B2B Data Ingestion & Automation Portal',
+    d:'Nov 2025',
+    tp:'Project',
+    st:['TypeScript','React','PostgreSQL'],
+    ctx:'Final-year engineering capstone project focused on building a low-latency B2B lead discovery and customer pipeline management system.',
+    ch:'Served as Core Architect for a low-latency business pipeline manager. Designed optimized data interaction pipelines using relational PostgreSQL indexing strategies to capture high-volume discovery targets, cleanly structuring customer segments while drastically lowering application processing lag.',
+    res:[
+      'Optimized PostgreSQL indexing for high-volume queries',
+      'Structured customer segmentation engine',
+      'Significant reduction in processing latency',
+      'Clean React-based management interface'
+    ],
+    lk:[{l:'Source Code Repository',u:'https://github.com/AtharvaMeherkar/lead-nexus'}]
+  },
+  mb:{
+    t:'Morning Basket Web Ecosystem',
+    s:'Live Production E-Commerce & Supply Chain Integration',
+    d:'Apr 2026',
+    tp:'Project',
+    st:['TypeScript','React','Node.js','Vercel','GoDaddy'],
+    ctx:'Full-stack production commerce platform for a fresh fruits delivery startup currently serving customers across Pune with daily operations.',
+    ch:'Architected and actively maintaining the complete transactional system for a fresh fruits platform handling live deliveries in Pune. Programmatically mapped real-time physical supply chain checkpoints to continuous data structures, optimizing customer lifecycle tracking, delivery logistics, and daily automated vendor operations.',
+    res:[
+      'Live production e-commerce with real-time ordering',
+      'Supply chain checkpoint digitization',
+      'Automated vendor operations pipeline',
+      'Customer lifecycle tracking and analytics'
+    ],
+    lk:[
+      {l:'Live Deployment',u:'https://mymorningbasket.in'},
+      {l:'Source Code Repository',u:'https://github.com/AtharvaMeherkar/morning-basket-website'}
+    ]
+  },
+  pub:{
+    t:'AI Summit 2026 Research Publication',
+    s:'Peer-Reviewed Advanced Data Systems Transformation',
+    d:'Mar 2026',
+    tp:'Publication',
+    st:[],
+    cite:'"Deconstructive Data Architecture: A Protocol for Semantic Atomicity and Stateless Reconstruction in AI-Driven Ecosystems."',
+    ctx:'Original peer-reviewed research published at the AI Summit 2026 conference, exploring novel approaches to data management in distributed AI systems.',
+    ch:'Published original research detailing structural data management optimization frameworks. Outlined novel techniques utilizing semantic atomicity parameters to guarantee state integrity and stateless reconstruction layers across complex distributed machine learning model feeds, eliminating system recovery operational overhead.',
+    res:[
+      'Novel semantic atomicity protocol',
+      'Stateless reconstruction methodology',
+      'Distributed ML pipeline optimization',
+      'Elimination of recovery overhead'
+    ],
+    lk:[]
+  },
+  csa:{
+    t:'Cyber Security Analyst Intern',
+    s:'AENEXZ TECH PRIVATE LIMITED',
+    d:'Feb 2026 — Present',
+    tp:'Experience',
+    st:[],
+    ctx:'Contributing to enterprise-grade security operations across production infrastructure.',
+    ch:'Contributing to enterprise security operations including vulnerability assessment, threat intelligence analysis, and security infrastructure monitoring across production environments. Collaborating with senior analysts on incident response protocols and security posture improvements.',
+    res:[
+      'Production vulnerability assessment',
+      'Threat intelligence analysis',
+      'Security infrastructure monitoring',
+      'Incident response collaboration'
+    ],
+    lk:[]
+  },
+  cto:{
+    t:'Chief Technology Officer (CTO)',
+    s:'MorningBasket — Startup Initiative',
+    d:'Jan 2026 — Present',
+    tp:'Experience',
+    st:['TypeScript','React','Node.js','Vercel'],
+    ctx:'Leading all technology strategy and engineering execution for a fresh produce delivery startup with active daily operations in Pune.',
+    ch:'Leading all technology strategy, architecture decisions, and engineering execution for a fresh produce delivery startup operating in Pune. Overseeing the complete software development lifecycle from system design through production deployment and continuous optimization.',
+    res:[
+      'End-to-end technology leadership',
+      'Production deployment pipeline',
+      'Continuous system optimization',
+      'Full SDLC ownership'
+    ],
+    lk:[{l:'Live Platform',u:'https://mymorningbasket.in'}]
+  },
+  ba:{
+    t:'Business Analyst Intern',
+    s:'Edunet Foundation',
+    d:'Jul — Dec 2025',
+    tp:'Experience',
+    st:[],
+    ctx:'Analyzed business processes and data workflows to identify optimization opportunities within the Edunet Foundation ecosystem.',
+    ch:'Analyzed business process workflows and data pipelines to identify optimization opportunities. Collaborated with cross-functional teams to translate business requirements into structured technical specifications and actionable project deliverables.',
+    res:[
+      'Process workflow optimization',
+      'Cross-functional requirement translation',
+      'Technical specification authoring',
+      'Data pipeline analysis'
+    ],
+    lk:[]
+  },
+  gc:{
+    t:'Google Cybersecurity Professional Certificate',
+    s:'Professional Certification — Google',
+    d:'Aug 2025',
+    tp:'Credential',
+    st:[],
+    ctx:'Comprehensive professional certification program covering core cybersecurity domains aligned with industry standards.',
+    ch:'Completed comprehensive professional certification covering network security, Linux administration, SQL-based security analytics, SIEM tooling, intrusion detection systems, and incident response frameworks aligned with NIST standards.',
+    res:[
+      'Network security fundamentals',
+      'SIEM and IDS tooling',
+      'SQL-based security analytics',
+      'NIST-aligned incident response'
+    ],
+    lk:[]
+  },
+  ibm:{
+    t:'IBM IT Fundamentals for Cybersecurity',
+    s:'Professional Certification — IBM',
+    d:'Sep 2025',
+    tp:'Credential',
+    st:[],
+    ctx:'IBM professional training covering foundational cybersecurity principles and organizational security governance.',
+    ch:'Completed IBM professional training covering foundational cybersecurity principles including CIA triad implementation, access control models, cryptographic standards, and organizational security governance frameworks.',
+    res:[
+      'CIA triad implementation',
+      'Access control models',
+      'Cryptographic standards',
+      'Security governance frameworks'
+    ],
+    lk:[]
+  }
+};
+
+function render(d){
+  const tags=d.st?.length?`<div class="ov-tags">${d.st.map(s=>`<span class="ov-tag">${s}</span>`).join('')}</div>`:'';
+  const cite=d.cite?`<blockquote style="border-left:3px solid var(--accent-light);padding-left:1.25rem;margin-top:1.5rem;font-style:italic;font-size:14px;color:var(--text-muted);background:var(--accent-glow);padding:1rem 1.25rem">${d.cite}</blockquote>`:'';
+  const links=d.lk?.length?`<div class="ov-links">${d.lk.map(l=>`<a href="${l.u}" target="_blank" class="ov-link">${l.l} ↗</a>`).join('')}</div>`:'';
+  const items=d.res?d.res.map(r=>`<li>${r}</li>`).join(''):'';
+  return `
+    <span class="ov-type">${d.tp} · ${d.d}</span>
+    <h1 class="ov-title">${d.t}</h1>
+    <p class="ov-sub">${d.s}</p>
+    <div class="ov-divider"></div>
+    <div class="ov-grid">
+      <div class="ov-col">
+        <h2>01 / Context & Tech</h2>
+        <p>${d.ctx}</p>
+        ${tags}
+        ${cite}
+      </div>
+      <div class="ov-col">
+        <h2>02 / Engineering challenge</h2>
+        <p>${d.ch}</p>
+      </div>
+      <div class="ov-col">
+        <h2>03 / Core Accomplishments</h2>
+        <ul>${items}</ul>
+        ${links}
+      </div>
+    </div>`;
+}
+
+function dive(id){
+  const d=DATA[id];
+  if(!d)return;
+  document.getElementById('ov-c').innerHTML=render(d);
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function close_(){
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function filter(c){
+  document.querySelectorAll('.pill').forEach(b=>b.classList.toggle('on',b.dataset.f===c));
+  document.querySelectorAll('.card').forEach((r,i)=>{
+    const show=c==='all'||r.dataset.c===c;
+    r.style.display=show?'':'none';
+    if(show){
+      r.style.opacity='0';
+      r.style.transform='translateY(12px)';
+      setTimeout(()=>{
+        r.style.transition='opacity 0.4s cubic-bezier(0.16,1,0.3,1), transform 0.4s cubic-bezier(0.16,1,0.3,1)';
+        r.style.opacity='1';
+        r.style.transform='none';
+      },20+i*20);
+    }
+  });
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')close_();
+});
+
+// Scroll reveal
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('show');
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.02});
+
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+});
+
+// Spotlight effect
+document.addEventListener('mousemove', e => {
+  const spotlight = document.getElementById('spotlight');
+  if (spotlight) {
+    spotlight.style.left = e.clientX + 'px';
+    spotlight.style.top = e.clientY + 'px';
+  }
+});
+
+// Interactive Sandbox Console commands
+const consoleOutput = document.getElementById('console-output');
+const consoleInput = document.getElementById('console-input');
+
+function appendConsoleLine(text, className = '') {
+  const line = document.createElement('div');
+  line.className = className;
+  line.textContent = text;
+  consoleOutput.appendChild(line);
+  consoleOutput.scrollTop = consoleOutput.scrollHeight;
+}
+
+function handleConsoleInput(e) {
+  if (e.key === 'Enter') {
+    const val = consoleInput.value.trim();
+    if (!val) return;
+    
+    appendConsoleLine(`guest@secops:~$ ${val}`, 'c-user-line');
+    consoleInput.value = '';
+    
+    const cmd = val.toLowerCase().split(' ')[0];
+    
+    setTimeout(() => {
+      switch(cmd) {
+        case 'help':
+          appendConsoleLine('Available commands:');
+          appendConsoleLine('  scan     - Executes a SecOps security vulnerability scan.');
+          appendConsoleLine('  about    - Displays short biography profile.');
+          appendConsoleLine('  contact  - Shows active communication endpoints.');
+          appendConsoleLine('  clear    - Clears the active console feed.');
+          break;
+        case 'clear':
+          consoleOutput.innerHTML = '';
+          break;
+        case 'about':
+          appendConsoleLine('Atharva Meherkar | Computer Engineer');
+          appendConsoleLine('Focused on threat modeling, secure system design, and process automation.');
+          break;
+        case 'contact':
+          appendConsoleLine('Resume: ./Atharva_Meherkar_Resume.pdf');
+          appendConsoleLine('Email: atharvameherkar123@gmail.com');
+          appendConsoleLine('LinkedIn: /in/atharva-meherkar-16119a328');
+          appendConsoleLine('GitHub: github.com/AtharvaMeherkar');
+          break;
+        case 'scan':
+          runConsoleScan();
+          break;
+        default:
+          appendConsoleLine(`Command not found: '${cmd}'. Type 'help' for available commands.`, 't-sec');
+      }
+    }, 150);
+  }
+}
+
+function runConsoleScan() {
+  consoleOutput.innerHTML = '';
+  appendConsoleLine('Initializing SecOps security pipeline...', 't-sec');
+  
+  const steps = [
+    { text: 'Connecting to local audit broker...', time: 400 },
+    { text: 'Scanning local directories...', time: 800 },
+    { text: 'Verifying package entropy indices...', time: 1200 },
+    { text: 'Running BeautifulSoup Reflection Audits...', time: 1600 },
+    { text: 'SSH isolation check: OK', time: 2000, class: 't-ok' },
+    { text: 'DOM reflection checks: 0 vulnerabilities found.', time: 2400, class: 't-ok' },
+    { text: 'Audit complete. Target: SECURE.', time: 2800, class: 't-sec' }
+  ];
+  
+  steps.forEach(step => {
+    setTimeout(() => {
+      appendConsoleLine(`> ${step.text}`, step.class || '');
+    }, step.time);
+  });
+}
+</script>
+</body>
 </html>
